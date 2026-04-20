@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Phase = "typing" | "holding" | "deleting";
+type Phase = "paused" | "typing" | "holding" | "deleting";
 
 type Options = {
   typeMs?: number;
@@ -15,11 +15,19 @@ export function useTypewriter(
   { typeMs = 70, holdMs = 1800, delMs = 35 }: Options = {}
 ): string {
   const [idx, setIdx] = useState(0);
-  const [text, setText] = useState("");
-  const [phase, setPhase] = useState<Phase>("typing");
+  const [text, setText] = useState(words[0] ?? "");
+  const [phase, setPhase] = useState<Phase>("paused");
 
   useEffect(() => {
-    const word = words[idx % words.length];
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
+    setText("");
+    setPhase("typing");
+  }, []);
+
+  useEffect(() => {
+    if (phase === "paused") return;
+    const word = words[idx % words.length] ?? "";
     let t: ReturnType<typeof setTimeout> | undefined;
     if (phase === "typing") {
       if (text.length < word.length) {

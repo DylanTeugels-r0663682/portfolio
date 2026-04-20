@@ -12,7 +12,7 @@ export function Capabilities({ capabilities }: { capabilities: readonly Capabili
               <div className="num">{String(i + 1).padStart(2, "0")}</div>
               <div className="title">{c.title}</div>
               <div className="role">
-                <b>{c.roles[0]}</b>
+                <b>{c.roles[0] ?? ""}</b>
                 {c.roles.length > 1 ? ` · +${c.roles.length - 1}` : ""}
               </div>
               <div className="chev">+</div>

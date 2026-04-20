@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const title = "Dylan Teugels — Technical Lead & Software Developer";
@@ -6,6 +7,7 @@ const description =
   "Technical Lead building scalable Adobe Commerce B2C/B2B platforms for enterprise merchants. 5+ years, Hyvä early adopter, Belgium.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title,
   description,
   authors: [{ name: "Dylan Teugels" }],
