@@ -1,0 +1,27 @@
+# Dylan Teugels
+
+> Technical Lead & Software Developer at PHPro (Belgium). 5+ years building scalable Adobe Commerce B2C/B2B platforms for enterprise merchants. Hyvä early adopter since 2021.
+
+## Canonical sources
+- Portfolio: /
+- LinkedIn: https://www.linkedin.com/in/dylan-teugels-942a82159/
+- GitHub: https://github.com/DylanTeugels-r0663682
+
+## About
+Curiosity-driven full-stack developer. Pragmatic, independent, calm under pressure. Works remote-friendly from Belgium.
+
+## Core expertise
+- Adobe Commerce / Magento 2 (Adobe Commerce Certified Developer)
+- Hyvä + Hyvä Checkout (Hyvä Certified, early adopter 2021)
+- PHP, Alpine.js, Tailwind CSS
+- Enterprise integrations: SAP, Salesforce, Akeneo PIM, Algolia (middleware-first)
+- Microservices decomposition from Magento monolith
+- B2B commerce: company admin, role-based permissions, price lists
+- Multi-store / multi-currency / international storefronts
+
+## Reference project
+Orac Decor "One Site" program — merging B2C and B2B into a single multi-currency, multi-country Adobe Commerce installation with Hyvä. Technical Lead, named on project charter.
+
+## Contact
+- Email: dylan.teugels9@gmail.com
+- Languages: Dutch (native), English (good), French (medium)

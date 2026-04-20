@@ -1,0 +1,91 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+
+const title = "Dylan Teugels — Technical Lead & Software Developer";
+const description =
+  "Technical Lead building scalable Adobe Commerce B2C/B2B platforms for enterprise merchants. 5+ years, Hyvä early adopter, Belgium.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  authors: [{ name: "Dylan Teugels" }],
+  openGraph: {
+    type: "profile",
+    title,
+    description:
+      "5+ years building scalable Adobe Commerce B2C/B2B platforms. Hyvä early adopter. SAP / Salesforce / Akeneo integrations.",
+    images: [{ url: "/dylan.webp" }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1b1814",
+  width: "device-width",
+  initialScale: 1,
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dylan Teugels",
+  jobTitle: "Technical Lead & Software Developer",
+  worksFor: { "@type": "Organization", name: "PHPro" },
+  address: { "@type": "PostalAddress", addressCountry: "BE" },
+  email: "dylan.teugels9@gmail.com",
+  image: "/dylan.webp",
+  sameAs: [
+    "https://www.linkedin.com/in/dylan-teugels-942a82159/",
+    "https://github.com/DylanTeugels-r0663682",
+  ],
+  knowsAbout: [
+    "Adobe Commerce",
+    "Magento 2",
+    "Hyvä",
+    "Hyvä Checkout",
+    "PHP",
+    "Alpine.js",
+    "Tailwind CSS",
+    "SAP integration",
+    "Salesforce integration",
+    "Akeneo PIM",
+    "Algolia",
+    "Microservices",
+    "B2B commerce",
+    "Multi-store architecture",
+    "Multi-currency",
+    "Scrum",
+  ],
+  knowsLanguage: ["nl", "en", "fr"],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Adobe Commerce Certified Developer",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Hyvä Certified",
+    },
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
