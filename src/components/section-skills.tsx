@@ -1,12 +1,11 @@
 import { Reveal } from "./reveal";
-import { SectionHead } from "./section-head";
+import { Section } from "./section";
 import type { Portfolio } from "@/lib/portfolio-data";
 
-export function Skills({ data }: { data: Portfolio }) {
-  const groups = Object.values(data.skills);
+export function Skills({ skills }: { skills: Portfolio["skills"] }) {
+  const groups = Object.values(skills);
   return (
-    <section id="skills" className="shell">
-      <SectionHead title="Stack" />
+    <Section id="skills" title="Stack">
       <Reveal className="skills">
         {groups.map((g, i) => (
           <div key={i} className={`sk-group ${g.span}`}>
@@ -25,6 +24,6 @@ export function Skills({ data }: { data: Portfolio }) {
           </div>
         ))}
       </Reveal>
-    </section>
+    </Section>
   );
 }

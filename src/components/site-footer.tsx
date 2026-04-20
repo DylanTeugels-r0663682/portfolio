@@ -1,36 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Portfolio } from "@/lib/portfolio-data";
 
-export function SiteFooter({ data }: { data: Portfolio }) {
+const timeFormatter = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Europe/Brussels",
+  hour12: false,
+});
+
+export function SiteFooter({ name }: { name: string }) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    const tick = () => {
-      const d = new Date();
-      const fmt = new Intl.DateTimeFormat("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "Europe/Brussels",
-        hour12: false,
-      });
-      setTime(`${fmt.format(d)} CET`);
-    };
+    const tick = () => setTime(`${timeFormatter.format(new Date())} CET`);
     tick();
     const id = setInterval(tick, 30000);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="shell">
+    <div className="mx-auto w-full max-w-[1320px] px-8 max-[720px]:px-5">
       <footer>
         <div>
-          © {data.name} · {new Date().getFullYear()}
+          © {name} · {new Date().getFullYear()}
         </div>
-        <div style={{ display: "flex", gap: 24 }}>
+        <div className="flex gap-6">
           <span>{time ? `${time} · Belgium` : "Belgium"}</span>
-          <a href="/llms.txt" target="_blank">
+          <a href="/llms.txt" target="_blank" rel="noopener noreferrer">
             llms.txt
           </a>
           <a href="#top">↑ top</a>

@@ -15,14 +15,14 @@ export default function HomePage() {
     <>
       <TopNav />
       <Hero data={portfolio} />
-      <About data={portfolio} />
-      <Timeline data={portfolio} />
-      <Capabilities data={portfolio} />
-      <Skills data={portfolio} />
-      <Certifications data={portfolio} />
-      <RD data={portfolio} />
-      <Contact data={portfolio} />
-      <SiteFooter data={portfolio} />
+      <About bullets={portfolio.aboutBullets} />
+      <Timeline timeline={portfolio.timeline} />
+      <Capabilities capabilities={portfolio.capabilities} />
+      <Skills skills={portfolio.skills} />
+      <Certifications certs={portfolio.certs} />
+      <RD projects={portfolio.rdProjects} />
+      <Contact email={portfolio.email} linkedin={portfolio.linkedin} github={portfolio.github} />
+      <SiteFooter name={portfolio.name} />
     </>
   );
 }

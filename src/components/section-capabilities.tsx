@@ -1,13 +1,12 @@
 import { Reveal } from "./reveal";
-import { SectionHead } from "./section-head";
-import type { Portfolio } from "@/lib/portfolio-data";
+import { Section } from "./section";
+import type { Capability } from "@/lib/portfolio-data";
 
-export function Capabilities({ data }: { data: Portfolio }) {
+export function Capabilities({ capabilities }: { capabilities: readonly Capability[] }) {
   return (
-    <section id="capabilities" className="shell">
-      <SectionHead title="Capabilities" />
+    <Section id="capabilities" title="Capabilities">
       <Reveal className="cap-list">
-        {data.capabilities.map((c, i) => (
+        {capabilities.map((c, i) => (
           <details key={i} className="cap">
             <summary>
               <div className="num">{String(i + 1).padStart(2, "0")}</div>
@@ -26,9 +25,9 @@ export function Capabilities({ data }: { data: Portfolio }) {
               <div className="block">
                 <div className="k">why it matters</div>
                 <div className="v">{c.why}</div>
-                <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 6 }}>
+                <div className="mt-[18px] flex flex-wrap gap-1.5">
                   {c.stack.split(" · ").map((s, j) => (
-                    <span key={j} className="chip" style={{ borderColor: "var(--hairline)" }}>
+                    <span key={j} className="chip chip-muted">
                       {s}
                     </span>
                   ))}
@@ -38,6 +37,6 @@ export function Capabilities({ data }: { data: Portfolio }) {
           </details>
         ))}
       </Reveal>
-    </section>
+    </Section>
   );
 }

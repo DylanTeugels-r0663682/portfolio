@@ -9,11 +9,11 @@ export function Hero({ data }: { data: Portfolio }) {
 
   return (
     <section className="hero" id="top">
-      <div className="shell">
+      <div className="mx-auto w-full max-w-[1320px] px-8 max-[720px]:px-5">
         <div className="hero-grid">
           <div>
-            <div className="label" style={{ marginBottom: 24 }}>
-              <span style={{ color: "var(--accent)" }}>●</span>&nbsp;&nbsp;DYLAN TEUGELS · PORTFOLIO · 2026
+            <div className="label mb-6">
+              <span className="text-accent">●</span>&nbsp;&nbsp;DYLAN TEUGELS · PORTFOLIO · 2026
             </div>
             <h1>
               <span className="line">

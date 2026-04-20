@@ -1,13 +1,12 @@
 import { Reveal } from "./reveal";
-import { SectionHead } from "./section-head";
-import type { Portfolio } from "@/lib/portfolio-data";
+import { Section } from "./section";
+import type { Cert } from "@/lib/portfolio-data";
 
-export function Certifications({ data }: { data: Portfolio }) {
+export function Certifications({ certs }: { certs: readonly Cert[] }) {
   return (
-    <section id="certs" className="shell">
-      <SectionHead title="Certifications" />
+    <Section id="certs" title="Certifications">
       <Reveal className="certs">
-        {data.certs.map((c, i) => (
+        {certs.map((c, i) => (
           <div key={i} className="cert">
             <div className="badge">{c.badge}</div>
             <div>
@@ -17,6 +16,6 @@ export function Certifications({ data }: { data: Portfolio }) {
           </div>
         ))}
       </Reveal>
-    </section>
+    </Section>
   );
 }

@@ -1,13 +1,12 @@
 import { Reveal } from "./reveal";
-import { SectionHead } from "./section-head";
-import type { Portfolio } from "@/lib/portfolio-data";
+import { Section } from "./section";
+import type { TimelineEntry } from "@/lib/portfolio-data";
 
-export function Timeline({ data }: { data: Portfolio }) {
+export function Timeline({ timeline }: { timeline: readonly TimelineEntry[] }) {
   return (
-    <section id="timeline" className="shell">
-      <SectionHead title="Timeline" />
+    <Section id="timeline" title="Timeline">
       <div className="timeline">
-        {data.timeline.map((r, i) => (
+        {timeline.map((r, i) => (
           <Reveal key={i} delay={i * 80} className="tl-row">
             <div className="tl-year">{r.year}</div>
             <div>
@@ -17,6 +16,6 @@ export function Timeline({ data }: { data: Portfolio }) {
           </Reveal>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
