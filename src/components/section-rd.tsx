@@ -23,9 +23,9 @@ export function RD({ projects }: { projects: readonly string[] }) {
         delay={120}
         className="mt-5 max-w-[720px] font-mono text-[12px] leading-[1.7] text-fg-faint"
       >
-        // curiosity-driven side work. no public links, no spotlight. just a signal
+        {"// curiosity-driven side work. no public links, no spotlight. just a signal"}
         <br />
-        // that i ship outside the magento box and stay fluent in ai-assisted dev.
+        {"// that i ship outside the magento box and stay fluent in ai-assisted dev."}
       </Reveal>
     </Section>
   );

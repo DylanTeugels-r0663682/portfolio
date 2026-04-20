@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
-type Phase = "paused" | "typing" | "holding" | "deleting";
+type Phase = "typing" | "holding" | "deleting";
 
 type Options = {
   typeMs?: number;
@@ -10,44 +10,53 @@ type Options = {
   delMs?: number;
 };
 
+function subscribeMotion(cb: () => void): () => void {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+
+function getMotionSnapshot(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function getServerMotionSnapshot(): boolean {
+  return false;
+}
+
 export function useTypewriter(
   words: readonly string[],
   { typeMs = 70, holdMs = 1800, delMs = 35 }: Options = {}
 ): string {
+  const reduced = useSyncExternalStore(subscribeMotion, getMotionSnapshot, getServerMotionSnapshot);
   const [idx, setIdx] = useState(0);
-  const [text, setText] = useState(words[0] ?? "");
-  const [phase, setPhase] = useState<Phase>("paused");
+  const [text, setText] = useState("");
+  const [phase, setPhase] = useState<Phase>("typing");
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
-    setText("");
-    setPhase("typing");
-  }, []);
-
-  useEffect(() => {
-    if (phase === "paused") return;
+    if (reduced) return;
     const word = words[idx % words.length] ?? "";
-    let t: ReturnType<typeof setTimeout> | undefined;
+    let t: ReturnType<typeof setTimeout>;
     if (phase === "typing") {
       if (text.length < word.length) {
         t = setTimeout(() => setText(word.slice(0, text.length + 1)), typeMs);
       } else {
-        t = setTimeout(() => setPhase("holding"), 10);
+        t = setTimeout(() => setPhase("holding"), 0);
       }
     } else if (phase === "holding") {
       t = setTimeout(() => setPhase("deleting"), holdMs);
-    } else if (phase === "deleting") {
-      if (text.length > 0) {
-        t = setTimeout(() => setText(word.slice(0, text.length - 1)), delMs);
-      } else {
+    } else if (text.length > 0) {
+      t = setTimeout(() => setText(word.slice(0, text.length - 1)), delMs);
+    } else {
+      t = setTimeout(() => {
         setIdx((i) => i + 1);
         setPhase("typing");
-      }
+      }, 0);
     }
     return () => clearTimeout(t);
-  }, [text, phase, idx, words, typeMs, holdMs, delMs]);
+  }, [reduced, text, phase, idx, words, typeMs, holdMs, delMs]);
 
+  if (reduced) return words[0] ?? "";
   return text;
 }
 
