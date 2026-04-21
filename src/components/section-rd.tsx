@@ -1,17 +1,19 @@
 import { Fragment } from "react";
-import { Reveal } from "./reveal";
-import { Section } from "./section";
+import { Reveal } from "./ui/Reveal";
+import { Section } from "./ui/Section";
 
 export function RD({ projects }: { projects: readonly string[] }) {
   return (
     <Section id="rd" title="Personal R&D">
-      <Reveal className="rd">
-        <div className="k">ALSO BUILDING</div>
-        <div className="v">
+      <Reveal className="flex flex-wrap items-baseline gap-4 border border-hairline bg-bg-raised px-8 py-10">
+        <div className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+          ALSO BUILDING
+        </div>
+        <div className="text-[clamp(18px,2vw,22px)] font-medium tracking-[-0.015em]">
           {projects.map((p, i) => (
-            <Fragment key={i}>
+            <Fragment key={p}>
               {p}
-              {i < projects.length - 1 ? <span>·</span> : null}
+              {i < projects.length - 1 ? <span className="mx-1.5 text-fg-faint">·</span> : null}
             </Fragment>
           ))}
         </div>

@@ -10,13 +10,7 @@ type Props = {
   style?: CSSProperties;
 };
 
-export function Reveal({
-  children,
-  delay = 0,
-  as: Tag = "div",
-  className = "",
-  style = {},
-}: Props) {
+export function Reveal({ children, delay = 0, as: Tag = "div", className = "", style }: Props) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -24,12 +18,12 @@ export function Reveal({
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
+        for (const e of entries) {
           if (e.isIntersecting) {
             el.classList.add("in");
             io.unobserve(el);
           }
-        });
+        }
       },
       { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
     );

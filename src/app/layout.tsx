@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { headers } from "next/headers";
+import { TopNav } from "@/components/layout/TopNav";
+import { SiteFooter } from "@/components/site-footer";
+import { getPortfolio } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -31,7 +35,6 @@ export const metadata: Metadata = {
     title,
     description:
       "5+ years building scalable Adobe Commerce B2C/B2B platforms. Hyvä early adopter. SAP / Salesforce / Akeneo integrations.",
-    images: [{ url: "/dylan.webp" }],
   },
 };
 
@@ -85,18 +88,28 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const [portfolio, headerList] = await Promise.all([getPortfolio(), headers()]);
+  const nonce = headerList.get("x-nonce") ?? undefined;
+
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
+          nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <TopNav />
+        <main id="main">{children}</main>
+        <SiteFooter name={portfolio.name} />
+      </body>
     </html>
   );
 }

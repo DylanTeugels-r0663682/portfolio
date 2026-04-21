@@ -13,10 +13,15 @@ export function SiteFooter({ name }: { name: string }) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    const tick = () => setTime(`${timeFormatter.format(new Date())} CET`);
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      const now = new Date();
+      setTime(`${timeFormatter.format(now)} CET`);
+      const msUntilNextMinute = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
+      timeoutId = setTimeout(tick, msUntilNextMinute);
+    };
     tick();
-    const id = setInterval(tick, 30000);
-    return () => clearInterval(id);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (

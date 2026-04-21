@@ -1,0 +1,126 @@
+{
+  "name": "Dylan Teugels",
+  "role": "Software Developer",
+  "employer": "PHPro",
+  "location": "Belgium",
+  "email": "dylan.teugels9@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/dylan-teugels-942a82159/",
+  "github": "https://github.com/DylanTeugels-r0663682?tab=repositories",
+  "headline": {
+    "leadLines": ["Software developer", "building custom"],
+    "rotatingWords": ["Adobe Commerce", "Hyvä storefront", "Hyvä Checkout"],
+    "tail": ""
+  },
+  "sub": "5+ years delivering performant webshops for enterprise merchants. I integrate Adobe Commerce with ERP, CRM, PIM and middleware — architecting clean boundaries so the platform stays fast and every system stays in sync.",
+  "meta": [
+    { "k": "Role", "v": "Software Developer" },
+    { "k": "Company", "v": "PHPro · since 2021" },
+    { "k": "Location", "v": "Belgium · remote-friendly" },
+    { "k": "Stack", "v": "Adobe Commerce · Hyvä · PHP" }
+  ],
+  "aboutBullets": [
+    { "w": "Pragmatic", "d": "ship what works" },
+    { "w": "Independent", "d": "hand me the brief" },
+    { "w": "Communicator", "d": "clear with the team" },
+    { "w": "Calm", "d": "prod's on fire, fine" }
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "role": "Intern → Developer, PHPro",
+      "desc": "Joined PHPro as Hyvä was freshly launched. Picked it up early and got hands-on with it while the ecosystem was still forming."
+    },
+    {
+      "year": "2021 – 2024",
+      "role": "Developer",
+      "desc": "Grew into increasingly complex work: integrations and the delicate parts of the codebase. Picked up Scrum Master as an extra role for the team."
+    },
+    {
+      "year": "2025 – present",
+      "role": "Technical Lead",
+      "desc": "Client discovery, functional analysis, architecture decisions, technical analysis, preparing dev-ready work."
+    }
+  ],
+  "capabilities": [
+    {
+      "title": "Enterprise Integrations via Middleware",
+      "role": "Integrated",
+      "otherRoles": ["Designed", "Discovered"],
+      "teaser": "Wiring Adobe Commerce to SAP, Salesforce and other enterprise systems.",
+      "stack": "SAP · Salesforce · iPaaS",
+      "what": "On the Adobe Commerce side, I integrate the platform with ERP, CRM, PIM and other enterprise systems — via REST and SOAP APIs, message queues, or middleware/iPaaS, depending on what the architecture calls for. Customer, product, pricing and order flows all live here.",
+      "why": "Integration is where enterprise commerce lives or dies. Picking the right pattern per flow — direct API, queued, or middleware-routed — keeps Adobe Commerce clean and the flows reliable."
+    },
+    {
+      "title": "Customer Master Data Architecture",
+      "role": "Discovered",
+      "otherRoles": ["Designed", "Built"],
+      "teaser": "Salesforce as the source of truth for customer identity.",
+      "stack": "Salesforce · SAP",
+      "what": "Designing where customer identity lives — typically a CRM as the master — and how IDs, VAT numbers, and account states sync between Adobe Commerce, ERP and CRM. Covers first-order ID assignment, lead-vs-account logic, and customer data sync strategy.",
+      "why": "One source of truth for customer identity across the commerce stack means no duplicates, no drift. Get it wrong and every downstream flow — orders, pricing, invoicing — drifts with it."
+    },
+    {
+      "title": "Product Data & PIM",
+      "role": "Owned Adobe Commerce side",
+      "teaser": "Akeneo PIM flowing cleanly from product data to storefront.",
+      "stack": "Akeneo",
+      "what": "Integrating a PIM with Adobe Commerce on the commerce side — product model design, attribute mapping, taxonomy, and making sure simple products stay simple instead of being forced into complex structures. Works with Akeneo or any equivalent PIM.",
+      "why": "Correct product modeling from PIM → Commerce is foundational. Get it wrong and you pollute search, pricing and checkout downstream."
+    },
+    {
+      "title": "Search at Scale",
+      "role": "Implemented",
+      "teaser": "Algolia replacing Magento search at enterprise catalog size.",
+      "stack": "Algolia · Adobe Commerce",
+      "what": "Integrating a dedicated search engine with Adobe Commerce — attribute-driven discovery, faceted filtering, autocomplete, and relevance tuning. Algolia, Elasticsearch or equivalent.",
+      "why": "At enterprise catalog size, default Magento search doesn't scale. A dedicated search layer delivers faceted results at latency merchants actually notice."
+    },
+    {
+      "title": "Hyvä Full-Stack Frontend",
+      "role": "Built",
+      "otherRoles": ["Customized"],
+      "teaser": "Hyvä early adopter since 2021; Checkout customized at module level.",
+      "stack": "Hyvä · Hyvä Enterprise · Hyvä Checkout",
+      "what": "Full Hyvä and Hyvä Enterprise storefronts. Hyvä Checkout customized at module level to match client-specific business rules, payment flows and B2B requirements.",
+      "why": "Checkout is the highest-risk, highest-value surface in commerce. Module-level Hyvä Checkout work requires deep knowledge of both Hyvä and Magento internals — not theme tweaks, real extension of the checkout module."
+    },
+    {
+      "title": "B2B Commerce Complexity",
+      "role": "Discovered",
+      "otherRoles": ["Designed", "Built"],
+      "teaser": "Company admin, shared address books, role-based pricing, quick order.",
+      "stack": "Adobe Commerce B2B",
+      "what": "Full Adobe Commerce B2B surface — company admin with shared address books and role-based permissions, negotiable pricing and quotes, approval workflows, shared catalogs, requisition and quick-order flows — the full feature set.",
+      "why": "B2B commerce on Adobe Commerce is its own specialty — merchant org structure, permission models and price list management are where most implementations fail."
+    },
+    {
+      "title": "Multi-Store / Multi-Currency / International",
+      "role": "Discovered",
+      "otherRoles": ["Designed", "Built"],
+      "teaser": "One installation, many markets — multi-currency, GeoIP redirect.",
+      "stack": "Adobe Commerce · GeoIP",
+      "what": "International storefront architecture: multi-currency, multi-country, GeoIP-driven routing — one installation, many markets.",
+      "why": "Scaling to new countries without duplicating the platform is the whole point. Done right, each new market is configuration, not a fork."
+    },
+    {
+      "title": "Technical Leadership",
+      "role": "Technical Lead · RACI: Responsible",
+      "teaser": "Architecture, client strategy, project charters — the bridge role.",
+      "stack": "Charter · Steering committee",
+      "what": "Client discovery, functional analysis, architecture decisions, technical analysis, preparing dev-ready work, team meetings, steering committee attendance.",
+      "why": "The bridge between business intent and engineering execution. Being named on project charters alongside PM and PO is formal recognition of that role."
+    }
+  ],
+  "certs": [
+    { "badge": "AC", "t": "Adobe Commerce Certified Developer", "s": "Certified" },
+    { "badge": "Hy", "t": "Hyvä Certified", "s": "Certified · early adopter 2021" }
+  ],
+  "rdProjects": [
+    "music app",
+    "personal assistant",
+    "AI alarm clock",
+    "AI recipe app",
+    "Claude Code workflows"
+  ]
+}

@@ -1,67 +1,83 @@
 import Image from "next/image";
-import { Reveal } from "./reveal";
-import { Typewriter } from "./typewriter";
-import type { Portfolio } from "@/lib/portfolio-data";
+import { Container } from "./ui/Container";
+import { Reveal } from "./ui/Reveal";
+import { Typewriter } from "./ui/Typewriter";
+import type { Portfolio } from "@/lib/content";
 
 export function Hero({ data }: { data: Portfolio }) {
-  const typed = data.headline.parts.find((p) => p.type === "typed");
-  const alts = typed?.type === "typed" ? typed.alts : ["Adobe Commerce"];
+  const { leadLines, rotatingWords, tail } = data.headline;
 
   return (
-    <section className="hero" id="top">
-      <div className="mx-auto w-full max-w-[1320px] px-8 max-[720px]:px-5">
-        <div className="hero-grid">
+    <section
+      id="top"
+      className="relative flex min-h-screen scroll-mt-[var(--nav-h)] flex-col justify-center pt-[120px] pb-20"
+    >
+      <Container>
+        <div className="grid grid-cols-[minmax(0,1fr)_440px] items-start gap-12 max-[1200px]:grid-cols-1">
           <div>
             <div className="label mb-6">
               <span className="text-accent">●</span>&nbsp;&nbsp;DYLAN TEUGELS · PORTFOLIO · 2026
             </div>
-            <h1>
-              <span className="line">
-                <Reveal delay={80}>Technical Lead</Reveal>
-              </span>
-              <span className="line">
-                <Reveal delay={180}>building scalable</Reveal>
-              </span>
-              <span className="line typed-line">
-                <Reveal delay={280}>
-                  <em>
-                    <Typewriter words={alts} typeMs={65} holdMs={2200} delMs={28} />
-                  </em>
+            <h1
+              className="[--hero-lines:3]"
+              style={{ minHeight: `calc(1.05em * calc(var(--hero-lines) * 1.07))` }}
+            >
+              {leadLines.map((line, i) => (
+                <span key={line} className="block overflow-hidden">
+                  <Reveal delay={80 + i * 100}>{line}</Reveal>
+                </span>
+              ))}
+              <span className="block overflow-visible">
+                <Reveal delay={80 + leadLines.length * 100}>
+                  <Typewriter words={rotatingWords} />
+                  {tail ? tail : null}
                 </Reveal>
               </span>
             </h1>
             <Reveal delay={480}>
-              <p className="hero-sub">{data.sub}</p>
+              <p className="mt-8 max-w-[620px] text-[clamp(16px,1.4vw,19px)] leading-[1.5] text-fg-dim">
+                {data.sub}
+              </p>
             </Reveal>
           </div>
           <Reveal delay={240}>
-            <div className="photo-card">
+            <div className="relative aspect-[1/1.05] self-start overflow-hidden border border-hairline bg-bg-raised">
               <Image
                 src="/dylan.webp"
                 alt="Portrait of Dylan Teugels"
                 width={600}
                 height={630}
                 priority
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMAAwDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgQFBv/EAB8QAAIBBAIDAAAAAAAAAAAAAAECAwAEERIFIRNxkf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAMAwEAAhEDEQA/AGtrUOqvOiyL2QXx19o3QBuqzN+ge7uGOcqCRVTiJ5JrIeRs6HUegBTC1//Z"
+                className="h-full w-full object-cover [filter:grayscale(0.15)_contrast(1.02)]"
               />
-              <div className="tag">
-                <b>●</b>&nbsp;LIVE · DYLAN.TEUGELS
+              <div className="absolute bottom-3 left-3 border border-hairline bg-bg px-2 py-[5px] font-mono text-[10px] tracking-[0.08em] text-fg-dim">
+                <b className="font-medium text-accent">●</b>&nbsp;LIVE · DYLAN.TEUGELS
               </div>
             </div>
           </Reveal>
         </div>
 
-        <Reveal delay={560} className="meta-strip">
+        <Reveal
+          delay={560}
+          className="mt-20 grid grid-cols-4 gap-px border border-hairline bg-hairline max-[820px]:grid-cols-2"
+        >
           {data.meta.map((m, i) => (
-            <div key={i}>
-              <div className="k">{m.k}</div>
-              <div className="v">
-                {i === 0 ? <span className="dot" /> : null}
+            <div key={m.k} className="bg-bg px-[22px] py-5">
+              <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-fg-faint">
+                {m.k}
+              </div>
+              <div className="mt-2 text-[15px] font-medium text-fg">
+                {i === 0 ? (
+                  <span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-accent align-middle" />
+                ) : null}
                 {m.v}
               </div>
             </div>
           ))}
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }
