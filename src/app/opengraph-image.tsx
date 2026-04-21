@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Dylan Teugels — Technical Lead & Software Developer";
+export const alt = "Dylan Teugels — Adobe Commerce & Hyvä Developer in Belgium";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -52,7 +52,7 @@ export default function OpengraphImage() {
             color: "#f5ece0",
           }}
         >
-          Technical Lead
+          Dylan Teugels
         </div>
         <div
           style={{
@@ -63,7 +63,7 @@ export default function OpengraphImage() {
             color: "#e89466",
           }}
         >
-          Adobe Commerce & Hyvä
+          Adobe Commerce & Hyvä Developer
         </div>
       </div>
       <div

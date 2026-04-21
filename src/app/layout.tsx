@@ -21,20 +21,41 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const title = "Dylan Teugels — Technical Lead & Software Developer";
+const title = "Dylan Teugels — Adobe Commerce & Hyvä Developer | Belgium";
 const description =
-  "Technical Lead building scalable Adobe Commerce B2C/B2B platforms for enterprise merchants. 5+ years, Hyvä early adopter, Belgium.";
+  "Adobe Commerce & Magento 2 developer in Belgium. Hyvä early adopter since 2021, PHP, enterprise B2B/B2C integrations with SAP, Salesforce and Akeneo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
+  title: { default: title, template: "%s | Dylan Teugels" },
   description,
-  authors: [{ name: "Dylan Teugels" }],
+  applicationName: "Dylan Teugels",
+  authors: [{ name: "Dylan Teugels", url: siteUrl }],
+  creator: "Dylan Teugels",
+  publisher: "Dylan Teugels",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+    },
+  },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
   openGraph: {
     type: "profile",
     title,
-    description:
-      "5+ years building scalable Adobe Commerce B2C/B2B platforms. Hyvä early adopter. SAP / Salesforce / Akeneo integrations.",
+    description,
+    url: siteUrl,
+    siteName: "Dylan Teugels",
+    locale: "en_US",
+    firstName: "Dylan",
+    lastName: "Teugels",
   },
 };
 
@@ -44,53 +65,71 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Dylan Teugels",
-  jobTitle: "Technical Lead & Software Developer",
-  worksFor: { "@type": "Organization", name: "PHPro" },
-  address: { "@type": "PostalAddress", addressCountry: "BE" },
-  email: "dylan.teugels9@gmail.com",
-  image: "/dylan.webp",
-  sameAs: [
-    "https://www.linkedin.com/in/dylan-teugels-942a82159/",
-    "https://github.com/DylanTeugels-r0663682",
-  ],
-  knowsAbout: [
-    "Adobe Commerce",
-    "Magento 2",
-    "Hyvä",
-    "Hyvä Checkout",
-    "PHP",
-    "Alpine.js",
-    "Tailwind CSS",
-    "SAP integration",
-    "Salesforce integration",
-    "Akeneo PIM",
-    "Algolia",
-    "Microservices",
-    "B2B commerce",
-    "Multi-store architecture",
-    "Multi-currency",
-    "Scrum",
-  ],
-  knowsLanguage: ["nl", "en", "fr"],
-  hasCredential: [
-    {
-      "@type": "EducationalOccupationalCredential",
-      name: "Adobe Commerce Certified Developer",
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
-      name: "Hyvä Certified",
-    },
-  ],
-};
-
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [portfolio, headerList] = await Promise.all([getPortfolio(), headers()]);
   const nonce = headerList.get("x-nonce") ?? undefined;
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": `${siteUrl}/#dylan`,
+      name: portfolio.name,
+      givenName: "Dylan",
+      familyName: "Teugels",
+      jobTitle: portfolio.role,
+      description,
+      url: siteUrl,
+      image: `${siteUrl}/dylan.webp`,
+      email: `mailto:${portfolio.email}`,
+      nationality: "BE",
+      worksFor: {
+        "@type": "Organization",
+        name: portfolio.employer,
+        url: "https://phpro.be",
+      },
+      address: { "@type": "PostalAddress", addressCountry: "BE" },
+      sameAs: [portfolio.linkedin, portfolio.github],
+      knowsAbout: [
+        "Adobe Commerce",
+        "Magento 2",
+        "Hyvä",
+        "Hyvä Checkout",
+        "PHP",
+        "Alpine.js",
+        "Tailwind CSS",
+        "SAP integration",
+        "Salesforce integration",
+        "Akeneo PIM",
+        "Algolia",
+        "B2B commerce",
+        "Multi-store architecture",
+        "Multi-currency",
+        "Scrum",
+      ],
+      knowsLanguage: ["nl", "en", "fr"],
+      hasCredential: [
+        {
+          "@type": "EducationalOccupationalCredential",
+          name: "Adobe Commerce Certified Developer",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          name: "Hyvä Certified",
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: portfolio.name,
+      description,
+      inLanguage: "en",
+      publisher: { "@id": `${siteUrl}/#dylan` },
+    },
+  ];
 
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>

@@ -38,7 +38,7 @@ export function Contact({ email, linkedin, github }: Props) {
         <a
           href={linkedin}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me noopener noreferrer"
           className="flex flex-col gap-2 bg-bg p-7 transition-colors duration-200 hover:bg-bg-raised"
         >
           <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-fg-faint">
@@ -50,7 +50,7 @@ export function Contact({ email, linkedin, github }: Props) {
         <a
           href={github}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me noopener noreferrer"
           className="flex flex-col gap-2 bg-bg p-7 transition-colors duration-200 hover:bg-bg-raised"
         >
           <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-fg-faint">

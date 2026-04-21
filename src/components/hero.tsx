@@ -44,7 +44,7 @@ export function Hero({ data }: { data: Portfolio }) {
             <div className="relative aspect-[1/1.05] self-start overflow-hidden border border-hairline bg-bg-raised">
               <Image
                 src="/dylan.webp"
-                alt="Portrait of Dylan Teugels"
+                alt="Dylan Teugels, Adobe Commerce and Hyvä developer based in Belgium"
                 width={600}
                 height={630}
                 priority

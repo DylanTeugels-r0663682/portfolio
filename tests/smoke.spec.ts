@@ -4,7 +4,6 @@ const SECTION_HEADINGS = [
   "About",
   "Timeline",
   "Capabilities",
-  "Stack",
   "Certifications",
   "Personal R&D",
   "Contact",
